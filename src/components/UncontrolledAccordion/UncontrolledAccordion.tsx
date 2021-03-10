@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 //Uncontrolled means that we don't change data on SERVER, don't use such on PRODUCTION
 
-type UncontrolledAccordionType = {
+export type UncontrolledAccordionType = {
     title: string
 
 }

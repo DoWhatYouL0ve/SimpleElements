@@ -19,9 +19,4 @@ export const Rating3: Story<RatingType> = (args) => <Rating value={3} onClick={a
 export const Rating4: Story<RatingType> = (args) => <Rating value={4} onClick={a => a}/>;
 export const Rating5: Story<RatingType> = (args) => <Rating value={5} onClick={a => a}/>;
 
-/*export const Primary = Template.bind({});
-Primary.args = {
-    primary: true,
-    label: 'Button',
-};*/
 
