@@ -27,7 +27,7 @@ function App(props:any) {
       <hr/>
       <UncontrolledAccordion title={'Uncontrolled Accordion'}/>
       <hr/>
-      <UncontrolledRating />
+      <UncontrolledRating onChange={x => x}/>
     </div>
   );
 }
