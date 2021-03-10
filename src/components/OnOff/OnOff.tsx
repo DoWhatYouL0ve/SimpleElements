@@ -1,4 +1,4 @@
-type OnOFFType = {
+export type OnOFFType = {
     on: boolean
     onChange: () => void
 }
