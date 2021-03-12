@@ -10,10 +10,35 @@ export default {
     component: Accordion,
 } as Meta;
 
-export const CollapsedMode: Story<AccordionType> = (args) => <Accordion  title={'-- Menu --'} onChange={action("Accordion mode collapsed")} collapsed={true}/>;
-export const UncollapsedMode: Story<AccordionType> = (args) => <Accordion title={'-- Menu --'} onChange={action("Accordion mode Uncollapsed")} collapsed={false}/>;
+// args - are the props. Мы рисуем компоненту с какими то аргументами(пропсами)
+const Template: Story<AccordionType> = (args) => <Accordion {...args} />;
 
-export const ModeChanging = () => {
+export const ModeChanging:Story<AccordionType> = (args) => {
     const [value, setValue] = useState( true)
-    return <Accordion title={'-- Menu --'} collapsed={value} onChange={() => setValue(!value)}/>
+    return <Accordion {...args} collapsed={value} onChange={() => setValue(!value)}/>
 }
+ModeChanging.args = {
+    title: '-- Menu --'
+}
+
+
+// .bind - creats a copy of the Template function, for template not to be changed
+// Now we can create our elements
+export const CollapsedMode = Template.bind({})
+CollapsedMode.args = {
+    title: '-- Menu --',
+    onChange: action("Accordion mode collapsed"),
+    collapsed: true
+}
+
+export const UncollapsedMode = Template.bind({})
+UncollapsedMode.args = {
+    title: '-- Menu --',
+    /**
+     * An example of comment in Template, also can be used in Type if we determine it in this document
+     */
+    onChange: action("Accordion mode collapsed"),
+    collapsed: false
+}
+
+

@@ -12,8 +12,10 @@ export default {
   },
 } as Meta;
 
+// args - are the props
 const Template: Story<ButtonProps> = (args) => <Button {...args} />;
 
+// .bind - creats a copy of the Template function, for template not to be changed
 export const Primary = Template.bind({});
 Primary.args = {
   primary: true,
