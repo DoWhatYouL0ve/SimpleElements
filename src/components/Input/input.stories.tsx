@@ -1,6 +1,7 @@
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/react/types-6-0';
 import {ChangeEvent, ChangeEventHandler, useRef, useState} from "react";
+import {action} from "@storybook/addon-actions";
 
 
 
@@ -32,4 +33,27 @@ export const GetValueByButtonPressOfUncontrolledInput = () => {
     return <><input ref={inputRef}/> <button onClick={save}>safe</button> - actual value: {value}</>
 }
 
-export const СontrolledInput = () => <input value={'controlled value'}/>
+export const СontrolledInputWithFixedValue = () => <input value={'controlled value'}/>
+
+export const ControlledInput = () => {
+    const [stateValue, setStateValue] = useState('')
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => setStateValue(e.currentTarget.value)
+    return <input value={stateValue} onChange={ onChange }/>
+}
+
+export const ControlledCheckbox = () => {
+    const [stateValue, setStateValue] = useState(false)
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => setStateValue(e.currentTarget.checked)
+    return <input type='checkbox' checked={stateValue} onChange={ onChange }/>
+}
+
+export const ControlledSelect = () => {
+    const [stateValue, setStateValue] = useState<string | undefined>(undefined)
+    const onChange = (e: ChangeEvent<HTMLSelectElement>) => setStateValue(e.currentTarget.value)
+    return <select value={stateValue} onChange={onChange}>
+        <option>none</option>
+        <option value={1}>Minsk</option>
+        <option value={2}>Moskva</option>
+        <option value={3}>Kiev</option>
+    </select>
+}
