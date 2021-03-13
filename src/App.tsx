@@ -15,11 +15,19 @@ function App(props:any) {
     const [switchOn, setSwitchOn] = useState(false)
     const [swhOn, setSwOn] = useState(false)
 
+    //for Accordion
+    const state = [
+        {title: 'Valodos', value: 1},
+        {title: 'Dimych', value: 2},
+        {title: 'Bob', value: 3 }
+    ]
+    const onClick = (id: any) => {alert("user with Id " + id + " should be happy")}
+
   return (
     <div className="App">
       <Rating value={ratingValue} onClick={setRatingValue}/>
       <hr/>
-      <Accordion title={"Menu"} collapsed={collapsed} onChange={() => setCollapsed(!collapsed)}/>
+      <Accordion onClick={onClick} items={state} title={"Menu"} collapsed={collapsed} onChange={() => setCollapsed(!collapsed)}/>
       <hr/>
       <OnOff on={switchOn} onChange={() => setSwitchOn(!switchOn)}/>
       <hr/>

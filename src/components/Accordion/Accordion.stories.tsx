@@ -18,7 +18,9 @@ export const ModeChanging:Story<AccordionType> = (args) => {
     return <Accordion {...args} collapsed={value} onChange={() => setValue(!value)}/>
 }
 ModeChanging.args = {
-    title: '-- Menu --'
+    title: '-- Menu --',
+    items: [{title: 'Valodos', value: 1}, {title: 'Dimych', value: 2}, {title: 'Bob', value: 3 }],
+    onClick: (value) => {alert("user with Id " + value + " should be happy")}
 }
 
 
@@ -28,7 +30,9 @@ export const CollapsedMode = Template.bind({})
 CollapsedMode.args = {
     title: '-- Menu --',
     onChange: action("Accordion mode collapsed"),
-    collapsed: true
+    collapsed: true,
+    items: [{title: 'Valodos', value: 1}, {title: 'Dimych', value: 2}, {title: 'Bob', value: 3 }],
+    onClick: action("some item was clicked")
 }
 
 export const UncollapsedMode = Template.bind({})
@@ -38,7 +42,9 @@ UncollapsedMode.args = {
      * An example of comment in Template, also can be used in Type if we determine it in this document
      */
     onChange: action("Accordion mode collapsed"),
-    collapsed: false
+    collapsed: false,
+    items: [{title: 'Valodos', value: 1}, {title: 'Dimych', value: 2}, {title: 'Bob', value: 3 }],
+    onClick: action("some item was clicked")
 }
 
 
