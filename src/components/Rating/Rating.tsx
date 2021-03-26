@@ -13,7 +13,9 @@ type  StarType = {
     value: RatingValueType
 }
 
-export function Rating(props:RatingType) {
+export const Rating = React.memo(RatingMemo)
+
+export function RatingMemo(props:RatingType) {
 
     return (
         <div>

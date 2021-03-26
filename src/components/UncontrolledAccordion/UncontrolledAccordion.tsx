@@ -14,7 +14,9 @@ type UncontrolledAccordionTitleType = {
     onClick: () => void
 }
 
-export function UncontrolledAccordion(props:UncontrolledAccordionType) {
+export const UncontrolledAccordion = React.memo(UncontrolledAccordionMemo)
+
+export function UncontrolledAccordionMemo(props:UncontrolledAccordionType) {
 
     //const [collapsed, setCollapsed] = useState( true)
     const [state, dispatch] = useReducer( reducer, {collapsed: false})
@@ -30,13 +32,17 @@ export function UncontrolledAccordion(props:UncontrolledAccordionType) {
     )
 }
 
-function UncontrolledAccordionTitle(props:UncontrolledAccordionTitleType) {
+const UncontrolledAccordionTitle = React.memo(UncontrolledAccordionTitleMemo)
+
+function UncontrolledAccordionTitleMemo(props:UncontrolledAccordionTitleType) {
     return (
         <div><h3 onClick={() => props.onClick()}>{props.title}</h3></div>
     )
 }
 
-function UncontrolledAccordionBody() {
+const UncontrolledAccordionBody = React.memo(UncontrolledAccordionBodyMemo)
+
+function UncontrolledAccordionBodyMemo() {
     return (
         <div>
             <ul>

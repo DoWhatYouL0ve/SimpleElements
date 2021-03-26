@@ -1,11 +1,13 @@
-import {useState} from "react";
+import React, {useState} from "react";
 
 export type UncontrolledOnOffType = {
     onChange: (on:boolean) => void
     defaultOn?:boolean
 }
 
-export function UncontrolledOnOff(props:UncontrolledOnOffType) {
+export const UncontrolledOnOff = React.memo(UncontrolledOnOffMemo)
+
+export function UncontrolledOnOffMemo(props:UncontrolledOnOffType) {
     const [on, setOn] = useState(props.defaultOn ? props.defaultOn : false)
 
     const onStyle = {

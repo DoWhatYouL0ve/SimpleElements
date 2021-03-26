@@ -12,9 +12,11 @@ export type SelectPropsType = {
     items: ItemType[]
 }
 
+export const Select = React.memo(SelectMemo)
+
 //don't forget to set key property for each element
 // onMouseEnter - active when your mouse coursor is on element
-export function Select (props: SelectPropsType) {
+export function SelectMemo (props: SelectPropsType) {
     const [active, setActive] = useState(false)
     const [hoveredElementValue, setHoveredElementValue] = useState(props.value)
 
