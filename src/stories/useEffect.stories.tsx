@@ -46,10 +46,12 @@ export const SetTimeOutExample = () => {
     // привязываем к конкретному элементу, и только при его изменении будет запускаться useEffect
     // все побочные эффекты нужно помещать в useEffect
     useEffect(() => {
-        setTimeout(()=> {
+        const timeOut = setTimeout(()=> {
             console.log('useEffect says: counter changed')
             document.title=counter.toString()
         })
+
+        return clearTimeout(timeOut)
     }, [counter])
 
     return <>
@@ -68,13 +70,82 @@ export const SetIntervalExample = () => {
     // привязываем к конкретному элементу, и только при его изменении будет запускаться useEffect
     // все побочные эффекты нужно помещать в useEffect
     useEffect(() => {
-        setInterval(()=> {
+        const interval = setInterval(()=> {
             setCounter(counter += 1)
         }, 1000)
+
+        return () => {
+            clearInterval(interval)
+        }
     }, [])
 
     return <>
         <button onClick={() =>setCounter(counter + 1)}>+</button>
         {counter}
+    </>
+}
+
+export const ResetEffectExample = () => {
+    console.log("Component rendered")
+    let [counter, setCounter] = useState(1)
+
+    // привязываем к конкретному элементу, и только при его изменении будет запускаться useEffect
+    // все побочные эффекты нужно помещать в useEffect
+    useEffect(() => {
+        console.log('Effect occurred')
+
+        return () => {
+            console.log('Reset')
+        }
+    }, [counter])
+
+    return <>
+        <button onClick={() =>setCounter(counter + 1)}>+</button>
+        {counter}
+    </>
+}
+
+export const KeysTrackerExample = () => {
+    console.log("Component rendered")
+    let [text, setText] = useState('')
+
+    // привязываем к конкретному элементу, и только при его изменении будет запускаться useEffect
+    // все побочные эффекты нужно помещать в useEffect
+    useEffect(() => {
+        console.log('Effect occurred')
+        const handler = (e:KeyboardEvent) => {
+            console.log(e.key)
+            setText(text + e.key)}
+        window.addEventListener('keypress', handler)
+
+        return () => {
+            window.removeEventListener('keypress', handler)
+        }
+    }, [text])
+
+    return <>
+        {text}
+    </>
+}
+
+export const SetTimeOutAdditionalExample = () => {
+    console.log("Component rendered")
+    let [text, setText] = useState('')
+
+    // привязываем к конкретному элементу, и только при его изменении будет запускаться useEffect
+    // все побочные эффекты нужно помещать в useEffect
+    useEffect(() => {
+        console.log('Effect occurred')
+        const timeOutId = setTimeout( () => {
+            setText('3 seconds passed')
+        }, 3000)
+
+        return () => {
+            clearTimeout(timeOutId)
+        }
+    }, [text])
+
+    return <>
+        {text}
     </>
 }
