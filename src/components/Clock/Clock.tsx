@@ -1,12 +1,21 @@
 import React, {useEffect, useState} from "react";
+import {DigitalClockView} from "./DigitalClockView";
+import {AnalogClockView} from "./AnalogClockType";
 
+type PropsType = {
+    mode?: 'digital' | 'analog'
+}
 
-export const Clock = () => {
+export type ClockViewPropsType = {
+    date: Date
+}
+
+export const Clock = (props: PropsType) => {
     const [date, setDate] = useState(new Date())
 
-    useEffect( () => {
+    useEffect(() => {
         // updating interval every second, but clock reflected only once after the first upload of the page
-        const intervalID = setInterval( () => {
+        const intervalID = setInterval(() => {
             setDate(new Date())
         }, 1000)
 
@@ -14,17 +23,25 @@ export const Clock = () => {
         return () => {
             clearInterval(intervalID)
         }
-    },[])
+    }, [])
 
-    const getTimeString = (number: number) => number < 10 ? "0" + number : number
 
-    return (
-        <div>
-            <span>{getTimeString(date.getHours())}</span>
-            :
-            <span>{getTimeString(date.getMinutes())}</span>
-            :
-            <span>{getTimeString(date.getSeconds())}</span>
-        </div>
-    )
+    let view
+
+    switch (props.mode) {
+        case 'analog':
+           view = <AnalogClockView date={date}/>
+            break
+        case 'digital':
+        default:
+            view = <DigitalClockView date={date}/>
+    }
+
+    return <div>{view}</div>
+
 }
+
+
+
+
+
